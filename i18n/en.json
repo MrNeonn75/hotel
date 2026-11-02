@@ -1,0 +1,99 @@
+{
+  "appName": "StayNow",
+  "tabs": {
+    "home": "Home",
+    "map": "Map",
+    "favourites": "Favourites",
+    "history": "History",
+    "profile": "Profile"
+  },
+  "home": {
+    "greeting": "Hello 👋",
+    "title": "Where tonight?",
+    "searchPlaceholder": "Search city, hotel, or area...",
+    "filters": {
+      "all": "All",
+      "cheapest": "Lowest price",
+      "topRated": "Top rated",
+      "discounted": "Best discounts",
+      "breakfast": "Breakfast",
+      "pool": "Pool"
+    },
+    "hotelsFound": "hotels found",
+    "noHotelsFound": "No hotels found",
+    "clearFilter": "Reset filters"
+  },
+  "hotel": {
+    "night": "night",
+    "bookNow": "Book Now",
+    "rules": "House rules",
+    "importantInfo": "Important information",
+    "advantages": "Amenities & Advantages",
+    "about": "About the hotel",
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "getDirections": "Get directions",
+    "reviews": "reviews",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out"
+  },
+  "booking": {
+    "title": "Booking",
+    "dates": "Dates",
+    "guests": "Guests",
+    "adults": "Adults",
+    "children": "Children",
+    "personalInfo": "Personal information",
+    "specialRequests": "Special requests",
+    "priceSummary": "Price breakdown",
+    "standardPrice": "Standard price",
+    "discount": "Discount amount",
+    "serviceFee": "Service fee",
+    "finalTotal": "Total amount",
+    "confirmBooking": "Confirm booking",
+    "successTitle": "Booking confirmed!",
+    "bookingNumber": "Booking number",
+    "viewHistory": "View history",
+    "goHome": "Back to home"
+  },
+  "favourites": {
+    "title": "Favourites",
+    "emptyTitle": "No favourite hotels yet",
+    "emptySubtitle": "Tap the heart icon on any hotel to save it here for quick access.",
+    "exploreHotels": "Explore hotels"
+  },
+  "history": {
+    "title": "Booking History",
+    "emptyTitle": "No bookings yet",
+    "emptySubtitle": "Discover discounted hotels tonight and make your first booking.",
+    "cancel": "Cancel",
+    "cancelled": "Cancelled",
+    "confirmed": "Confirmed",
+    "cancelConfirmTitle": "Cancel booking",
+    "cancelConfirmMessage": "Are you sure you want to cancel this booking?"
+  },
+  "profile": {
+    "title": "Profile",
+    "subtitle": "Account & app preferences",
+    "edit": "Edit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "infoNote": "This information will be pre-filled on your next bookings.",
+    "personalInfo": "Personal information",
+    "contactInfo": "Contact details",
+    "documentInfo": "Document details",
+    "appSettings": "App settings",
+    "language": "App language",
+    "theme": "Theme mode",
+    "clearAll": "Delete all my data"
+  },
+  "offline": {
+    "banner": "No internet connection. You are currently offline."
+  },
+  "errors": {
+    "unexpected": "An unexpected error occurred",
+    "retry": "Try again",
+    "loadFailed": "Failed to load information"
+  }
+}
+

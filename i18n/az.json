@@ -1,0 +1,99 @@
+{
+  "appName": "StayNow",
+  "tabs": {
+    "home": "Ana səhifə",
+    "map": "Xəritə",
+    "favourites": "Favoritlər",
+    "history": "Tarixçə",
+    "profile": "Profil"
+  },
+  "home": {
+    "greeting": "Salam 👋",
+    "title": "Bu gecə hara?",
+    "searchPlaceholder": "Şəhər, otel və ya ərazi axtar...",
+    "filters": {
+      "all": "Hamısı",
+      "cheapest": "Ən ucuz",
+      "topRated": "Ən yüksək reytinq",
+      "discounted": "Endirimli",
+      "breakfast": "Səhər yeməyi",
+      "pool": "Hovuz"
+    },
+    "hotelsFound": "otel tapıldı",
+    "noHotelsFound": "Heç bir otel tapılmadı",
+    "clearFilter": "Filtrləri sıfırla"
+  },
+  "hotel": {
+    "night": "gecə",
+    "bookNow": "Rezervasiya et",
+    "rules": "Bilməli olduğunuz qaydalar",
+    "importantInfo": "Vacib məlumatlar",
+    "advantages": "Üstünlüklər və xidmətlər",
+    "about": "Otel haqqında",
+    "showMore": "Daha çox",
+    "showLess": "Daha az",
+    "getDirections": "Yol tarifi",
+    "reviews": "rəy",
+    "checkIn": "Giriş",
+    "checkOut": "Çıxış"
+  },
+  "booking": {
+    "title": "Rezervasiya",
+    "dates": "Tarixlər",
+    "guests": "Qonaq sayı",
+    "adults": "Böyük",
+    "children": "Uşaq",
+    "personalInfo": "Şəxsi məlumatlar",
+    "specialRequests": "Xüsusi istəklər",
+    "priceSummary": "Qiymət xülasəsi",
+    "standardPrice": "Standart qiymət",
+    "discount": "Endirim məbləği",
+    "serviceFee": "Xidmət haqqı",
+    "finalTotal": "Yekun məbləğ",
+    "confirmBooking": "Rezervasiyanı təsdiqlə",
+    "successTitle": "Rezervasiya təsdiqləndi!",
+    "bookingNumber": "Rezervasiya nömrəsi",
+    "viewHistory": "Tarixçəyə bax",
+    "goHome": "Ana səhifəyə qayıt"
+  },
+  "favourites": {
+    "title": "Favoritlərim",
+    "emptyTitle": "Hələ favorit otel yoxdur",
+    "emptySubtitle": "Bəyəndiyiniz otelləri ürək ikonuna basaraq yadda saxlayın və istənilən vaxt asanlıqla tapın.",
+    "exploreHotels": "Otellərə bax"
+  },
+  "history": {
+    "title": "Rezervasiya Tarixçəsi",
+    "emptyTitle": "Hələ heç bir rezervasiyanız yoxdur",
+    "emptySubtitle": "Bu gün üçün endirimli otelləri kəşf edin və ilk rezervasiyanızı edin.",
+    "cancel": "Ləğv et",
+    "cancelled": "Ləğv edilib",
+    "confirmed": "Təsdiqlənib",
+    "cancelConfirmTitle": "Rezervasiyanı ləğv et",
+    "cancelConfirmMessage": "Rezervasiyanı ləğv etmək istədiyinizdən əminsiniz?"
+  },
+  "profile": {
+    "title": "Profil",
+    "subtitle": "Hesab və tətbiq ayarları",
+    "edit": "Redaktə et",
+    "save": "Yadda saxla",
+    "cancel": "Ləğv et",
+    "infoNote": "Bu məlumatlar növbəti rezervasiyalarda avtomatik doldurulacaq.",
+    "personalInfo": "Şəxsi məlumatlar",
+    "contactInfo": "Əlaqə məlumatları",
+    "documentInfo": "Sənəd məlumatları",
+    "appSettings": "Tətbiq ayarları",
+    "language": "Tətbiq dili",
+    "theme": "Görünüş rejimi",
+    "clearAll": "Bütün məlumatlarımı sil"
+  },
+  "offline": {
+    "banner": "İnternet bağlantısı yoxdur. Oflayn rejimdəsiniz."
+  },
+  "errors": {
+    "unexpected": "Gözlənilməz xəta baş verdi",
+    "retry": "Yenidən cəhd et",
+    "loadFailed": "Məlumatları yükləmək mümkün olmadı"
+  }
+}
+

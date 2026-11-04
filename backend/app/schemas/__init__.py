@@ -1,9 +1,18 @@
+from app.schemas.auth import (
+    AuthTokenResponse,
+    ForgotPasswordRequest,
+    UserLoginRequest,
+    UserResponse,
+    UserSignupRequest,
+    UserUpdateRequest,
+)
 from app.schemas.base import CamelModel, SuccessResponse
 from app.schemas.booking import (
     BookingCancelResponse,
     BookingCreate,
     BookingResponse,
 )
+from app.schemas.collection import CollectionResponse
 from app.schemas.error import ErrorDetail, ErrorPayload, ErrorResponse
 from app.schemas.favorite import (
     FavoriteListResponse,
@@ -28,6 +37,12 @@ from app.schemas.profile import (
     UserProfileResponse,
     UserProfileUpdate,
 )
+from app.schemas.review import (
+    ReviewCreate,
+    ReviewListResponse,
+    ReviewResponse,
+)
+from app.schemas.room import RoomResponse
 
 __all__ = [
     "CamelModel",
@@ -55,4 +70,15 @@ __all__ = [
     "FavoriteToggleRequest",
     "FavoriteToggleResponse",
     "FavoriteListResponse",
+    "UserSignupRequest",
+    "UserLoginRequest",
+    "ForgotPasswordRequest",
+    "UserResponse",
+    "AuthTokenResponse",
+    "UserUpdateRequest",
+    "RoomResponse",
+    "ReviewCreate",
+    "ReviewResponse",
+    "ReviewListResponse",
+    "CollectionResponse",
 ]

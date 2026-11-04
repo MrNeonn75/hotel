@@ -20,8 +20,13 @@ from sqlalchemy import func, select  # noqa: E402
 from sqlalchemy.orm import selectinload  # noqa: E402
 
 from app.core.database import AsyncSessionLocal, Base, engine  # noqa: E402
+from app.core.security import hash_password  # noqa: E402
+from app.models.collection import Collection  # noqa: E402
 from app.models.guest import Guest, GuestProfile  # noqa: E402
 from app.models.hotel import Amenity, Hotel, HotelImage  # noqa: E402
+from app.models.review import Review  # noqa: E402
+from app.models.room import Room  # noqa: E402
+from app.models.user import User  # noqa: E402
 
 # Deterministic namespace for hotel UUIDs
 HOTEL_NAMESPACE = uuid.UUID("a2b3c4d5-e6f7-4a8b-9c0d-1e2f3a4b5c6d")
@@ -626,6 +631,165 @@ async def seed():
             )
             session.add(profile)
             print("👤 Nümunə qonaq profili yaradıldı (default-device).")
+
+
+        # 4. Nümunə Qeydiyyatlı İstifadəçi (Auth üçün)
+        test_user = await session.scalar(select(User).where(User.email == "elshan@staynow.az"))
+        if not test_user:
+            test_user = User(
+                id=uuid.uuid5(HOTEL_NAMESPACE, "user-elshan"),
+                email="elshan@staynow.az",
+                password_hash=hash_password("Test1234"),
+                first_name="Elşən",
+                last_name="Məmmədov",
+                phone="+994501234567",
+                avatar="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+                is_active=True,
+            )
+            session.add(test_user)
+            print("🔑 Test istifadəçisi yaradıldı: elshan@staynow.az (şifrə: Test1234)")
+
+        # 5. Otellər üçün Nömrələr (Rooms) və Rəylər (Reviews)
+        SAMPLE_REVIEWS = [
+            ("Rəşad Əliyev", "Azərbaycan", 5.0, "Məkan və xidmət səviyyəsi əla idi. Otaqlar çox təmiz və işıqlıdır, personal hər xahişimizə dərhal cavab verdi.", "Deluxe Dəniz Mənzərəli Otaq"),
+            ("Leyla Məmmədova", "Azərbaycan", 4.8, "StayNow ilə rezervasiya çox rahat oldu. Şəhərin mərkəzinə yaxın, sakit və zövqlü bir məkandır.", "Standart Otaq"),
+            ("David Miller", "Böyük Britaniya", 4.9, "Excellent stay in Baku! Very polite staff, hearty breakfast buffet and splendid views.", "Executive Lüks Suite"),
+            ("Aysel Qasımova", "Azərbaycan", 4.7, "Otağın dizaynı və rahatlığı çox xoşuma gəldi. Mütləq yenidən gələcəyik.", "Deluxe Dəniz Mənzərəli Otaq"),
+        ]
+
+        all_hotels = list((await session.execute(select(Hotel).options(selectinload(Hotel.images)))).scalars().all())
+        for h in all_hotels:
+            # Otaqları yoxla və yarat
+            existing_rooms = await session.scalar(select(func.count(Room.id)).where(Room.hotel_id == h.id))
+            if existing_rooms == 0:
+                h_img0 = h.images[0].url if h.images else ""
+                h_img1 = h.images[1].url if len(h.images) > 1 else h_img0
+                h_img2 = h.images[2].url if len(h.images) > 2 else h_img0
+
+                r1 = Room(
+                    id=uuid.uuid5(HOTEL_NAMESPACE, f"{h.id}-std"),
+                    hotel_id=h.id,
+                    name="Standart Otaq",
+                    capacity=2,
+                    bed_type="1 İki nəfərlik və ya 2 Tək çarpayı",
+                    breakfast_policy="Səhər yeməyi daxildir",
+                    price=h.discounted_price,
+                    original_price=h.standard_price,
+                    image=h_img0,
+                    features=["28 m²", "Şəhər mənzərəsi", "Kondisioner", "Smart TV", "Pulsuz Wi-Fi"],
+                    is_active=True,
+                )
+                r2 = Room(
+                    id=uuid.uuid5(HOTEL_NAMESPACE, f"{h.id}-dlx"),
+                    hotel_id=h.id,
+                    name="Deluxe Dəniz Mənzərəli Otaq",
+                    capacity=2,
+                    bed_type="1 Böyük King Size çarpayı",
+                    breakfast_policy="Səhər yeməyi daxildir",
+                    price=Decimal(str(round(float(h.discounted_price) * 1.35, 2))),
+                    original_price=Decimal(str(round(float(h.standard_price) * 1.35, 2))),
+                    image=h_img1,
+                    features=["38 m²", "Panoramik mənzərə", "Balkon", "Kondisioner", "Mini-bar", "Qəhvə maşını"],
+                    is_active=True,
+                )
+                r3 = Room(
+                    id=uuid.uuid5(HOTEL_NAMESPACE, f"{h.id}-ste"),
+                    hotel_id=h.id,
+                    name="Executive Lüks Suite",
+                    capacity=3,
+                    bed_type="1 King Size + 1 Divan-çarpayı",
+                    breakfast_policy="Açıq bufet səhər yeməyi daxildir",
+                    price=Decimal(str(round(float(h.discounted_price) * 1.75, 2))),
+                    original_price=Decimal(str(round(float(h.standard_price) * 1.75, 2))),
+                    image=h_img2,
+                    features=["55 m²", "Geniş qonaq otağı", "Cakuzi", "Nespresso kofe maşını", "Lüks hamam dəsti"],
+                    is_active=True,
+                )
+                session.add_all([r1, r2, r3])
+
+            # Rəyləri yoxla və yarat
+            existing_revs = await session.scalar(select(func.count(Review.id)).where(Review.hotel_id == h.id))
+            if existing_revs == 0:
+                for idx, rev_tpl in enumerate(SAMPLE_REVIEWS):
+                    uname, ucountry, urating, ucomm, rtype = rev_tpl
+                    rev = Review(
+                        id=uuid.uuid5(HOTEL_NAMESPACE, f"{h.id}-rev-{idx}"),
+                        hotel_id=h.id,
+                        user_id=test_user.id if idx == 0 else None,
+                        user_name=uname,
+                        user_country=ucountry,
+                        rating=Decimal(str(urating)),
+                        comment=ucomm,
+                        room_type=rtype,
+                    )
+                    session.add(rev)
+
+        # 6. Kolleksiyalar (Collections)
+        COLLECTIONS_DATA = [
+            {
+                "slug": "col-sea-view",
+                "title": "Xəzər Sahili & Bulvar",
+                "subtitle": "Milli park və dəniz sahili boyu yerləşən ən gözəl otellər",
+                "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
+                "hotel_ids": [
+                    str(uuid.uuid5(HOTEL_NAMESPACE, "hotel-1")),
+                    str(uuid.uuid5(HOTEL_NAMESPACE, "hotel-2")),
+                    str(uuid.uuid5(HOTEL_NAMESPACE, "hotel-3")),
+                ],
+                "position": 1,
+            },
+            {
+                "slug": "col-old-city",
+                "title": "Qədim Bakı & İçərişəhər",
+                "subtitle": "Tarixi qala divarları daxilində unikal butik məkanlar",
+                "image": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=80",
+                "hotel_ids": [
+                    str(uuid.uuid5(HOTEL_NAMESPACE, "hotel-4")),
+                    str(uuid.uuid5(HOTEL_NAMESPACE, "hotel-5")),
+                ],
+                "position": 2,
+            },
+            {
+                "slug": "col-city-center",
+                "title": "Şəhər Mərkəzi & Fəvvarələr",
+                "subtitle": "Nizami küçəsi və şəhərin qaynar həyatının mərkəzində",
+                "image": "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80",
+                "hotel_ids": [
+                    str(uuid.uuid5(HOTEL_NAMESPACE, "hotel-6")),
+                    str(uuid.uuid5(HOTEL_NAMESPACE, "hotel-7")),
+                    str(uuid.uuid5(HOTEL_NAMESPACE, "hotel-8")),
+                ],
+                "position": 3,
+            },
+            {
+                "slug": "col-luxury-panorama",
+                "title": "Lüks & Panorama",
+                "subtitle": "Alov Qüllələri və möhtəşəm körfəz mənzərəli 5 ulduzlu suitlər",
+                "image": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80",
+                "hotel_ids": [
+                    str(uuid.uuid5(HOTEL_NAMESPACE, "hotel-1")),
+                    str(uuid.uuid5(HOTEL_NAMESPACE, "hotel-9")),
+                    str(uuid.uuid5(HOTEL_NAMESPACE, "hotel-10")),
+                ],
+                "position": 4,
+            },
+        ]
+
+        for col_data in COLLECTIONS_DATA:
+            existing_col = await session.scalar(select(Collection).where(Collection.slug == col_data["slug"]))
+            if not existing_col:
+                col = Collection(
+                    id=uuid.uuid5(HOTEL_NAMESPACE, col_data["slug"]),
+                    slug=col_data["slug"],
+                    title=col_data["title"],
+                    subtitle=col_data["subtitle"],
+                    image=col_data["image"],
+                    hotel_ids=col_data["hotel_ids"],
+                    hotel_count=len(col_data["hotel_ids"]),
+                    position=col_data["position"],
+                    is_active=True,
+                )
+                session.add(col)
 
         await session.commit()
 

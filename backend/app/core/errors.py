@@ -50,13 +50,32 @@ class ConflictError(AppException):
         )
 
 
-
 class BadRequestError(AppException):
     def __init__(self, message: str = "Yanlış sorğu parametri", details: list[Any] | None = None):
         super().__init__(
             code="BAD_REQUEST",
             message=message,
             status_code=status.HTTP_400_BAD_REQUEST,
+            details=details,
+        )
+
+
+class UnauthorizedError(AppException):
+    def __init__(self, message: str = "E-poçt və ya şifrə yanlışdır", details: list[Any] | None = None):
+        super().__init__(
+            code="UNAUTHORIZED",
+            message=message,
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            details=details,
+        )
+
+
+class ForbiddenError(AppException):
+    def __init__(self, message: str = "İcazə verilmədi", details: list[Any] | None = None):
+        super().__init__(
+            code="FORBIDDEN",
+            message=message,
+            status_code=status.HTTP_403_FORBIDDEN,
             details=details,
         )
 

@@ -8,6 +8,8 @@ from sqlalchemy.orm import selectinload
 from app.models.hotel import Amenity, Hotel
 from app.repositories.base import BaseRepository
 
+HOTEL_NAMESPACE = uuid.UUID("a2b3c4d5-e6f7-4a8b-9c0d-1e2f3a4b5c6d")
+
 
 class HotelRepository(BaseRepository[Hotel]):
     def __init__(self, session: AsyncSession):
@@ -17,11 +19,15 @@ class HotelRepository(BaseRepository[Hotel]):
         try:
             h_uuid = uuid.UUID(str(hotel_id))
         except ValueError:
-            return None
+            h_uuid = uuid.uuid5(HOTEL_NAMESPACE, str(hotel_id))
 
         query = (
             select(Hotel)
-            .options(selectinload(Hotel.images), selectinload(Hotel.amenities))
+            .options(
+                selectinload(Hotel.images),
+                selectinload(Hotel.amenities),
+                selectinload(Hotel.rooms),
+            )
             .where(Hotel.id == h_uuid)
         )
         result = await self.session.execute(query)
@@ -49,12 +55,12 @@ class HotelRepository(BaseRepository[Hotel]):
             query = query.where(Hotel.city.ilike(f"%{city}%"))
 
         if q:
-            search_pattern = f"%{q}%"
+            clean_q = f"%{q.strip()}%"
             query = query.where(
                 or_(
-                    Hotel.name.ilike(search_pattern),
-                    Hotel.address.ilike(search_pattern),
-                    Hotel.description.ilike(search_pattern),
+                    Hotel.name.ilike(clean_q),
+                    Hotel.address.ilike(clean_q),
+                    Hotel.description.ilike(clean_q),
                 )
             )
 
@@ -67,24 +73,21 @@ class HotelRepository(BaseRepository[Hotel]):
         if min_rating is not None:
             query = query.where(Hotel.rating >= min_rating)
 
-        if has_discount:
-            query = query.where(
-                or_(
-                    Hotel.discount_percent > 0,
-                    Hotel.discounted_price < Hotel.standard_price,
-                )
-            )
+        if has_discount is True:
+            query = query.where(Hotel.discount_percent > 0)
 
-        # "amenities" - bütün tələb olunan açarlar olmalıdır (ALL must match)
-        if amenities:
-            for key in amenities:
-                k = key.strip().lower()
-                if k:
-                    query = query.where(Hotel.amenities.any(Amenity.key == k))
-
-        # Tarixlərdə boş otağı olmayan otelləri çıxar
         if unavailable_hotel_ids:
             query = query.where(~Hotel.id.in_(unavailable_hotel_ids))
+
+        # Amenities filtri (ALL amenities tələb olunur)
+        if amenities:
+            clean_amenities = [a.strip().lower() for a in amenities if a.strip()]
+            for amen in clean_amenities:
+                query = query.where(
+                    Hotel.amenities.any(
+                        func.lower(Amenity.key) == amen
+                    )
+                )
 
         # Sıralama
         if sort == "price_asc":
@@ -92,21 +95,18 @@ class HotelRepository(BaseRepository[Hotel]):
         elif sort == "price_desc":
             query = query.order_by(Hotel.discounted_price.desc())
         elif sort == "rating_desc":
-            query = query.order_by(Hotel.rating.desc())
+            query = query.order_by(Hotel.rating.desc(), Hotel.review_count.desc())
         elif sort == "discount_desc":
             query = query.order_by(Hotel.discount_percent.desc())
-        else:  # recommended və ya default
+        else:
+            # Defolt 'recommended' sıralaması: reytinq və endirim
             query = query.order_by(Hotel.rating.desc(), Hotel.discount_percent.desc())
 
         result = await self.session.execute(query)
         return list(result.scalars().unique().all())
 
-    async def get_by_ids(self, ids: Sequence[str]) -> list[Hotel]:
-        """Verilmiş ID-lər üzrə otelləri tapır və verilmiş ardıcıllığı qoruyur (maksimum 50)."""
-        if not ids:
-            return []
-
-        # Maksimum 50 ID
+    async def get_by_ids(self, ids: Sequence[str | uuid.UUID]) -> list[Hotel]:
+        """Verilmiş ID-lər üzrə otelləri çəkir və parametr kimi verilmiş ardıcıllığı qoruyur."""
         capped_ids = ids[:50]
 
         id_order_map: dict[str, int] = {}
@@ -118,18 +118,22 @@ class HotelRepository(BaseRepository[Hotel]):
                 continue
             try:
                 u = uuid.UUID(clean_str)
-                uuids.append(u)
-                id_order_map[str(u)] = idx
             except ValueError:
-                # UUID deyilsə, ötür
-                continue
+                u = uuid.uuid5(HOTEL_NAMESPACE, clean_str)
+
+            uuids.append(u)
+            id_order_map[str(u)] = idx
 
         if not uuids:
             return []
 
         query = (
             select(Hotel)
-            .options(selectinload(Hotel.images), selectinload(Hotel.amenities))
+            .options(
+                selectinload(Hotel.images),
+                selectinload(Hotel.amenities),
+                selectinload(Hotel.rooms),
+            )
             .where(Hotel.id.in_(uuids), Hotel.is_active.is_(True))
         )
         result = await self.session.execute(query)

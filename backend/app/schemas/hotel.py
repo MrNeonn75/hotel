@@ -3,6 +3,7 @@ from datetime import date
 from pydantic import Field
 
 from app.schemas.base import CamelModel
+from app.schemas.room import RoomResponse
 
 
 class HotelBase(CamelModel):
@@ -79,6 +80,7 @@ class HotelResponse(HotelBase):
     id: str
     distance_km: float | None = None
     is_active: bool = True
+    rooms: list[RoomResponse] = []
 
 
 class HotelListResponse(CamelModel):

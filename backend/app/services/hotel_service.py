@@ -12,6 +12,7 @@ from app.schemas.hotel import (
     HotelListResponse,
     HotelResponse,
 )
+from app.schemas.room import RoomResponse
 
 
 def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
@@ -41,6 +42,21 @@ def serialize_hotel_response(hotel: Hotel, distance_km: float | None = None) -> 
         if hotel.amenities and hasattr(hotel.amenities[0], "key")
         else [str(x) for x in (hotel.amenities or [])]
     )
+    rooms = [
+        RoomResponse(
+            id=str(r.id),
+            hotel_id=str(r.hotel_id),
+            name=r.name,
+            capacity=r.capacity,
+            bed_type=r.bed_type,
+            breakfast_policy=r.breakfast_policy,
+            price=float(r.price),
+            original_price=float(r.original_price) if r.original_price is not None else None,
+            image=r.image,
+            features=r.features or [],
+        )
+        for r in (getattr(hotel, "rooms", None) or [])
+    ]
 
     return HotelResponse(
         id=str(hotel.id),
@@ -65,6 +81,7 @@ def serialize_hotel_response(hotel: Hotel, distance_km: float | None = None) -> 
         check_out_time=hotel.check_out_time,
         distance_km=distance_km,
         is_active=hotel.is_active,
+        rooms=rooms,
     )
 
 

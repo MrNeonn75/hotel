@@ -26,6 +26,8 @@ from app.models.base import BaseMixin
 if TYPE_CHECKING:
     from app.models.booking import Booking
     from app.models.favorite import Favorite
+    from app.models.review import Review
+    from app.models.room import Room
 
 # Postgres üçün ARRAY(Text), SQLite / digər mühitlər üçün JSON fallback
 ArrayTextType = PG_ARRAY(Text).with_variant(JSON(), "sqlite")
@@ -104,6 +106,8 @@ class Hotel(Base, BaseMixin):
     )
     bookings: Mapped[list["Booking"]] = relationship("Booking", back_populates="hotel", cascade="all, delete-orphan")
     favorites: Mapped[list["Favorite"]] = relationship("Favorite", back_populates="hotel", cascade="all, delete-orphan")
+    rooms: Mapped[list["Room"]] = relationship("Room", back_populates="hotel", cascade="all, delete-orphan", lazy="selectin")
+    reviews: Mapped[list["Review"]] = relationship("Review", back_populates="hotel", cascade="all, delete-orphan", lazy="selectin")
 
     __table_args__ = (
         Index("ix_hotels_city_is_active", "city", "is_active"),

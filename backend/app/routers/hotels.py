@@ -4,15 +4,26 @@ from datetime import date
 from fastapi import APIRouter, Depends, Query, Request, Response, status
 
 from app.core.limiter import limiter
-from app.deps import get_booking_service, get_hotel_service
+from app.deps import (
+    get_booking_service,
+    get_hotel_service,
+    get_optional_user,
+    get_review_service,
+    get_room_service,
+)
+from app.models.user import User
 from app.schemas.hotel import (
     HotelAvailabilityResponse,
     HotelFilterParams,
     HotelListResponse,
     HotelResponse,
 )
+from app.schemas.review import ReviewCreate, ReviewListResponse, ReviewResponse
+from app.schemas.room import RoomResponse
 from app.services.booking_service import BookingService
 from app.services.hotel_service import HotelService
+from app.services.review_service import ReviewService
+from app.services.room_service import RoomService
 
 router = APIRouter(prefix="/hotels", tags=["Otellər"])
 
@@ -121,6 +132,56 @@ async def check_availability(
         guests=guests,
     )
     return HotelAvailabilityResponse(available=is_available, rooms_left=rooms_left)
+
+
+@router.get(
+    "/{hotel_id}/rooms",
+    response_model=list[RoomResponse],
+    summary="Otel nömrələri (otaqlar)",
+    description="Otelə aid mövcud nömrə tiplərini, qiymətlərini və xüsusiyyətlərini qaytarır.",
+)
+@limiter.limit("120/minute")
+async def get_hotel_rooms(
+    request: Request,
+    hotel_id: str,
+    room_service: RoomService = Depends(get_room_service),
+):
+    return await room_service.get_rooms_by_hotel_id(hotel_id)
+
+
+@router.get(
+    "/{hotel_id}/reviews",
+    response_model=ReviewListResponse,
+    summary="Otel rəyləri",
+    description="Otelə aid qonaq rəylərini ən yenidən başlayaraq qaytarır.",
+)
+@limiter.limit("120/minute")
+async def get_hotel_reviews(
+    request: Request,
+    hotel_id: str,
+    limit: int = Query(50, ge=1, le=100),
+    offset: int = Query(0, ge=0),
+    review_service: ReviewService = Depends(get_review_service),
+):
+    return await review_service.get_reviews(hotel_id=hotel_id, limit=limit, offset=offset)
+
+
+@router.post(
+    "/{hotel_id}/reviews",
+    response_model=ReviewResponse,
+    status_code=status.HTTP_201_CREATED,
+    summary="Otelə rəy yazmaq",
+    description="Otel üçün yeni rəy və reytinq əlavə edir, otelin ümumi reytinqini və sayını avtomatik yeniləyir.",
+)
+@limiter.limit("30/minute")
+async def add_hotel_review(
+    request: Request,
+    hotel_id: str,
+    req: ReviewCreate,
+    user: User | None = Depends(get_optional_user),
+    review_service: ReviewService = Depends(get_review_service),
+):
+    return await review_service.add_review(hotel_id=hotel_id, req=req, user=user)
 
 
 @router.get(

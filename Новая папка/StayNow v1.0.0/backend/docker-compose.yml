@@ -1,0 +1,47 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: staynow_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: staynow_user
+      POSTGRES_PASSWORD: staynow_pass
+      POSTGRES_DB: staynow_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U staynow_user -d staynow_db"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: staynow_api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      ENV: development
+      DATABASE_URL: postgresql+asyncpg://staynow_user:staynow_pass@postgres:5432/staynow_db
+      SECRET_KEY: staynow_super_secret_development_key_change_in_production_32bytes_long
+      ENCRYPTION_KEY: D7z1g0T1Z1z0L4n1g9k3E4w2Q8x7V5u9Y2t1P4r6M8k=
+      CORS_ORIGINS: '["*"]'
+      HOST: 0.0.0.0
+      PORT: 8000
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: >
+      sh -c "python scripts/seed.py &&
+             uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+    volumes:
+      - .:/app
+
+volumes:
+  postgres_data:
+

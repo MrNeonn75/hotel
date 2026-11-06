@@ -1,0 +1,156 @@
+{
+  "appName": "HotelTonight",
+  "tabs": {
+    "home": "Ana səhifə",
+    "map": "Xəritə",
+    "favourites": "Favoritlər",
+    "history": "Tarixçə",
+    "profile": "Profil"
+  },
+  "home": {
+    "greeting": "Salam 👋",
+    "title": "Bu gecə hara?",
+    "searchSummary": "Axtarış",
+    "tonightOffers": "Bu gecə üçün ən yaxşı təkliflər",
+    "hotelsFound": "otel tapıldı",
+    "noHotelsFound": "Heç bir otel tapılmadı",
+    "clearFilter": "Filtrləri sıfırla",
+    "quickDates": {
+      "tonight": "Bu gecə",
+      "tomorrow": "Sabah",
+      "weekend": "Həftə sonu",
+      "selectDate": "Tarix seç"
+    },
+    "filterLabels": {
+      "sort": "Sırala",
+      "price": "Qiymət",
+      "stars": "Ulduz",
+      "amenities": "Xidmətlər",
+      "discounted": "Endirimli"
+    }
+  },
+  "hotel": {
+    "night": "gecə",
+    "bookNow": "Rezervasiya et",
+    "rules": "Bilməli olduğunuz qaydalar",
+    "importantInfo": "Vacib məlumatlar",
+    "advantages": "Üstünlüklər və xidmətlər",
+    "about": "Otel haqqında",
+    "whyThisHotel": "Niyə bu otel?",
+    "address": "Ünvan",
+    "showMore": "Daha çox",
+    "showLess": "Daha az",
+    "getDirections": "Xəritədə bax",
+    "reviews": "rəy",
+    "checkIn": "Giriş",
+    "checkOut": "Çıxış",
+    "freeCancellation": "Pulsuz ləğvetmə",
+    "dealLabel": "Bu gecənin təklifi"
+  },
+  "booking": {
+    "title": "Rezervasiyanı tamamla",
+    "stayDetails": "Qalma detalları",
+    "dates": "Tarixlər",
+    "guests": "Qonaq sayı",
+    "adults": "Böyük",
+    "children": "Uşaq",
+    "rooms": "Otaq",
+    "nights": "gecə",
+    "personalInfo": "Qonaq məlumatları",
+    "specialRequests": "Xüsusi istəklər (ixtiyari)",
+    "priceSummary": "Qiymət detalları",
+    "standardPrice": "Standart qiymət",
+    "discount": "Endirim məbləği",
+    "serviceFee": "Xidmət haqqı",
+    "finalTotal": "Yekun məbləğ",
+    "payAtHotel": "Ödəniş otelə çatanda edilir",
+    "cancellationPolicy": "Ləğv şərtləri",
+    "cancellationText": "Giriş gününə 24 saat qalmışa qədər ödənişsiz ləğv edilə bilər.",
+    "confirmBooking": "Rezervasiyanı təsdiqlə",
+    "successTitle": "Rezervasiya təsdiqləndi!",
+    "successSubtitle": "Rezervasiyanız uğurla qeydə alındı. Təsdiq məlumatları otelə göndərildi.",
+    "bookingNumber": "Rezervasiya nömrəsi",
+    "viewHistory": "Tarixçəyə bax",
+    "goHome": "Ana səhifəyə qayıt"
+  },
+  "favourites": {
+    "title": "Favoritlərim",
+    "emptyTitle": "Hələ favorit otel yoxdur",
+    "emptySubtitle": "Bəyəndiyiniz otellərdəki ürək ikonuna basaraq yadda saxlayın və istənilən vaxt asanlıqla tapın.",
+    "exploreHotels": "Otellərə bax"
+  },
+  "history": {
+    "title": "Rezervasiyalarım",
+    "tabs": {
+      "upcoming": "Gələcək",
+      "past": "Keçmiş",
+      "cancelled": "Ləğv edilmiş"
+    },
+    "emptyTitle": "Hələ heç bir rezervasiyanız yoxdur",
+    "emptySubtitle": "Bu gün üçün endirimli otelləri kəşf edin və ilk rezervasiyanızı edin.",
+    "cancel": "Rezervasiyanı ləğv et",
+    "viewHotel": "Otelə bax",
+    "cancelled": "Ləğv edilib",
+    "confirmed": "Təsdiqlənib",
+    "cancelConfirmTitle": "Rezervasiyanı ləğv et",
+    "cancelConfirmMessage": "Bu rezervasiyanı ləğv etmək istədiyinizdən əminsiniz? Bu əməliyyat geri qaytarıla bilməz.",
+    "cancelConfirmYes": "Bəli, ləğv et",
+    "cancelConfirmNo": "Xeyr, saxla"
+  },
+  "profile": {
+    "title": "Profil",
+    "subtitle": "Hesab və tətbiq ayarları",
+    "noInfo": "Məlumatlarınızı əlavə edin",
+    "infoNote": "Bu məlumatlar növbəti rezervasiyalarda avtomatik doldurulacaq.",
+    "sections": {
+      "personal": "Şəxsi məlumatlar",
+      "personalDesc": "Ad, soyad, doğum tarixi, vətəndaşlıq",
+      "contact": "Əlaqə məlumatları",
+      "contactDesc": "Telefon, email, ünvan",
+      "document": "Sənəd məlumatları",
+      "documentDesc": "Şəxsiyyət vəsiqəsi və ya pasport",
+      "language": "Dil",
+      "theme": "Görünüş",
+      "privacy": "Məxfilik və şərtlər",
+      "about": "Haqqında",
+      "clearAll": "Bütün məlumatlarımı sil"
+    },
+    "fields": {
+      "firstName": "Ad",
+      "lastName": "Soyad",
+      "phone": "Telefon (+994)",
+      "email": "Email",
+      "birthDate": "Doğum tarixi (İİİİ-AA-GG)",
+      "nationality": "Vətəndaşlıq",
+      "documentNumber": "Sənəd nömrəsi (Fin / Seriya)",
+      "city": "Şəhər",
+      "address": "Ünvan"
+    },
+    "languages": {
+      "az": "Azərbaycan dili",
+      "en": "English",
+      "ru": "Русский"
+    },
+    "themes": {
+      "system": "Sistem (avtomatik)",
+      "light": "Açıq rejim",
+      "dark": "Tünd rejim"
+    },
+    "save": "Yadda saxla",
+    "savedSuccess": "Məlumatlar uğurla yeniləndi",
+    "notSet": "Qeyd edilməyib",
+    "clearConfirmTitle": "Məlumatları silmək istəyirsiniz?",
+    "clearConfirmMessage": "Bütün profil və tətbiq məlumatlarınız sıfırlanacaq. Davam etmək istəyirsiniz?",
+    "clearConfirmYes": "Bəli, sil",
+    "clearConfirmNo": "Ləğv et"
+  },
+  "offline": {
+    "banner": "İnternet bağlantısı yoxdur. Oflayn rejimdəsiniz."
+  },
+  "errors": {
+    "unexpected": "Gözlənilməz xəta baş verdi",
+    "description": "Tətbiqdə gözlənilməz problem yarandı. Zəhmət olmasa yenidən cəhd edin.",
+    "retry": "Yenidən cəhd et"
+  }
+}
+

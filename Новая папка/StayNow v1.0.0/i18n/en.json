@@ -1,0 +1,156 @@
+{
+  "appName": "StayNow",
+  "tabs": {
+    "home": "Home",
+    "map": "Map",
+    "favourites": "Favourites",
+    "history": "History",
+    "profile": "Profile"
+  },
+  "home": {
+    "greeting": "Hello 👋",
+    "title": "Where tonight?",
+    "searchSummary": "Search",
+    "tonightOffers": "Best offers for tonight",
+    "hotelsFound": "hotels found",
+    "noHotelsFound": "No hotels found",
+    "clearFilter": "Reset filters",
+    "quickDates": {
+      "tonight": "Tonight",
+      "tomorrow": "Tomorrow",
+      "weekend": "Weekend",
+      "selectDate": "Select date"
+    },
+    "filterLabels": {
+      "sort": "Sort",
+      "price": "Price",
+      "stars": "Stars",
+      "amenities": "Amenities",
+      "discounted": "Deals"
+    }
+  },
+  "hotel": {
+    "night": "night",
+    "bookNow": "Book Now",
+    "rules": "House rules",
+    "importantInfo": "Important information",
+    "advantages": "Amenities & Highlights",
+    "about": "About the hotel",
+    "whyThisHotel": "Why choose this hotel?",
+    "address": "Address",
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "getDirections": "View on map",
+    "reviews": "reviews",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "freeCancellation": "Free cancellation",
+    "dealLabel": "Tonight's deal"
+  },
+  "booking": {
+    "title": "Complete booking",
+    "stayDetails": "Stay details",
+    "dates": "Dates",
+    "guests": "Guests",
+    "adults": "Adults",
+    "children": "Children",
+    "rooms": "Rooms",
+    "nights": "nights",
+    "personalInfo": "Guest information",
+    "specialRequests": "Special requests (optional)",
+    "priceSummary": "Price details",
+    "standardPrice": "Standard price",
+    "discount": "Discount savings",
+    "serviceFee": "Service fee",
+    "finalTotal": "Total amount",
+    "payAtHotel": "Payment upon arrival at hotel",
+    "cancellationPolicy": "Cancellation policy",
+    "cancellationText": "Free cancellation up to 24 hours before check-in.",
+    "confirmBooking": "Confirm reservation",
+    "successTitle": "Booking confirmed!",
+    "successSubtitle": "Your reservation has been confirmed. Details have been sent to the hotel.",
+    "bookingNumber": "Booking number",
+    "viewHistory": "View history",
+    "goHome": "Back to home"
+  },
+  "favourites": {
+    "title": "Favourites",
+    "emptyTitle": "No favourite hotels yet",
+    "emptySubtitle": "Tap the heart icon on any hotel to save it here for quick access.",
+    "exploreHotels": "Explore hotels"
+  },
+  "history": {
+    "title": "My Bookings",
+    "tabs": {
+      "upcoming": "Upcoming",
+      "past": "Past",
+      "cancelled": "Cancelled"
+    },
+    "emptyTitle": "No bookings yet",
+    "emptySubtitle": "Discover discounted hotels tonight and make your first booking.",
+    "cancel": "Cancel reservation",
+    "viewHotel": "View hotel",
+    "cancelled": "Cancelled",
+    "confirmed": "Confirmed",
+    "cancelConfirmTitle": "Cancel booking",
+    "cancelConfirmMessage": "Are you sure you want to cancel this reservation? This cannot be undone.",
+    "cancelConfirmYes": "Yes, cancel",
+    "cancelConfirmNo": "Keep booking"
+  },
+  "profile": {
+    "title": "Profile",
+    "subtitle": "Account & preferences",
+    "noInfo": "Add your information",
+    "infoNote": "This information will be pre-filled on your future bookings.",
+    "sections": {
+      "personal": "Personal information",
+      "personalDesc": "Name, birth date, nationality",
+      "contact": "Contact details",
+      "contactDesc": "Phone, email, address",
+      "document": "ID & Documents",
+      "documentDesc": "National ID or Passport",
+      "language": "Language",
+      "theme": "Appearance",
+      "privacy": "Privacy & Terms",
+      "about": "About",
+      "clearAll": "Delete all my data"
+    },
+    "fields": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "phone": "Phone (+994)",
+      "email": "Email",
+      "birthDate": "Birth date (YYYY-MM-DD)",
+      "nationality": "Nationality",
+      "documentNumber": "Document ID / Number",
+      "city": "City",
+      "address": "Address"
+    },
+    "languages": {
+      "az": "Azərbaycan dili",
+      "en": "English",
+      "ru": "Русский"
+    },
+    "themes": {
+      "system": "System (automatic)",
+      "light": "Light mode",
+      "dark": "Dark mode"
+    },
+    "save": "Save changes",
+    "savedSuccess": "Information updated successfully",
+    "notSet": "Not set",
+    "clearConfirmTitle": "Delete all data?",
+    "clearConfirmMessage": "All profile and cached data will be erased. Do you want to continue?",
+    "clearConfirmYes": "Yes, delete",
+    "clearConfirmNo": "Cancel"
+  },
+  "offline": {
+    "banner": "No internet connection. You are currently offline."
+  },
+  "errors": {
+    "unexpected": "An unexpected error occurred",
+    "description": "Something went wrong. Please try again.",
+    "retry": "Try again"
+  }
+}
+

@@ -1,0 +1,156 @@
+{
+  "appName": "HotelTonight",
+  "tabs": {
+    "home": "Главная",
+    "map": "Карта",
+    "favourites": "Избранное",
+    "history": "История",
+    "profile": "Профиль"
+  },
+  "home": {
+    "greeting": "Привет 👋",
+    "title": "Куда сегодня ночью?",
+    "searchSummary": "Поиск",
+    "tonightOffers": "Лучшие предложения на эту ночь",
+    "hotelsFound": "отелей найдено",
+    "noHotelsFound": "Отели не найдены",
+    "clearFilter": "Сбросить фильтры",
+    "quickDates": {
+      "tonight": "Сегодня",
+      "tomorrow": "Завтра",
+      "weekend": "Выходные",
+      "selectDate": "Выбрать даты"
+    },
+    "filterLabels": {
+      "sort": "Сортировка",
+      "price": "Цена",
+      "stars": "Звезды",
+      "amenities": "Удобства",
+      "discounted": "Скидки"
+    }
+  },
+  "hotel": {
+    "night": "ночь",
+    "bookNow": "Забронировать",
+    "rules": "Правила проживания",
+    "importantInfo": "Важная информация",
+    "advantages": "Удобства и преимущества",
+    "about": "Об отеле",
+    "whyThisHotel": "Почему этот отель?",
+    "address": "Адрес",
+    "showMore": "Подробнее",
+    "showLess": "Свернуть",
+    "getDirections": "На карте",
+    "reviews": "отзывов",
+    "checkIn": "Заезд",
+    "checkOut": "Выезд",
+    "freeCancellation": "Бесплатная отмена",
+    "dealLabel": "Предложение ночи"
+  },
+  "booking": {
+    "title": "Завершение бронирования",
+    "stayDetails": "Детали проживания",
+    "dates": "Даты",
+    "guests": "Количество гостей",
+    "adults": "Взрослые",
+    "children": "Дети",
+    "rooms": "Номера",
+    "nights": "ночей",
+    "personalInfo": "Данные гостя",
+    "specialRequests": "Особые пожелания (необязательно)",
+    "priceSummary": "Детали цены",
+    "standardPrice": "Стандартная цена",
+    "discount": "Скидка",
+    "serviceFee": "Сервисный сбор",
+    "finalTotal": "Итоговая сумма",
+    "payAtHotel": "Оплата при заселении в отель",
+    "cancellationPolicy": "Условия отмены",
+    "cancellationText": "Бесплатная отмена за 24 часа до даты заезда.",
+    "confirmBooking": "Подтвердить бронирование",
+    "successTitle": "Бронирование подтверждено!",
+    "successSubtitle": "Ваше бронирование успешно оформлено. Информация передана в отель.",
+    "bookingNumber": "Номер бронирования",
+    "viewHistory": "Посмотреть историю",
+    "goHome": "На главную"
+  },
+  "favourites": {
+    "title": "Избранное",
+    "emptyTitle": "Пока нет избранных отелей",
+    "emptySubtitle": "Нажмите на сердечко у любого отеля, чтобы сохранить его сюда для быстрого доступа.",
+    "exploreHotels": "Смотреть отели"
+  },
+  "history": {
+    "title": "Мои бронирования",
+    "tabs": {
+      "upcoming": "Предстоящие",
+      "past": "Прошедшие",
+      "cancelled": "Отмененные"
+    },
+    "emptyTitle": "У вас пока нет бронирований",
+    "emptySubtitle": "Откройте для себя отели со скидкой на сегодняшнюю ночь и сделайте первое бронирование.",
+    "cancel": "Отменить бронирование",
+    "viewHotel": "Посмотреть отель",
+    "cancelled": "Отменено",
+    "confirmed": "Подтверждено",
+    "cancelConfirmTitle": "Отмена бронирования",
+    "cancelConfirmMessage": "Вы уверены, что хотите отменить бронирование? Это действие нельзя отменить.",
+    "cancelConfirmYes": "Да, отменить",
+    "cancelConfirmNo": "Оставить"
+  },
+  "profile": {
+    "title": "Профиль",
+    "subtitle": "Аккаунт и настройки приложения",
+    "noInfo": "Добавьте ваши данные",
+    "infoNote": "Эти данные будут автоматически заполняться при следующих бронированиях.",
+    "sections": {
+      "personal": "Личные данные",
+      "personalDesc": "Имя, дата рождения, гражданство",
+      "contact": "Контактные данные",
+      "contactDesc": "Телефон, email, адрес",
+      "document": "Данные документов",
+      "documentDesc": "Удостоверение личности или паспорт",
+      "language": "Язык",
+      "theme": "Оформление",
+      "privacy": "Конфиденциальность и условия",
+      "about": "О приложении",
+      "clearAll": "Удалить все мои данные"
+    },
+    "fields": {
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "phone": "Телефон (+994)",
+      "email": "Email",
+      "birthDate": "Дата рождения (ГГГГ-ММ-ДД)",
+      "nationality": "Гражданство",
+      "documentNumber": "Номер документа (FIN / Паспорт)",
+      "city": "Город",
+      "address": "Адрес"
+    },
+    "languages": {
+      "az": "Azərbaycan dili",
+      "en": "English",
+      "ru": "Русский"
+    },
+    "themes": {
+      "system": "Системная (авто)",
+      "light": "Светлая тема",
+      "dark": "Темная тема"
+    },
+    "save": "Сохранить",
+    "savedSuccess": "Данные успешно обновлены",
+    "notSet": "Не указано",
+    "clearConfirmTitle": "Удалить все данные?",
+    "clearConfirmMessage": "Все данные профиля и кэш приложения будут удалены. Продолжить?",
+    "clearConfirmYes": "Да, удалить",
+    "clearConfirmNo": "Отмена"
+  },
+  "offline": {
+    "banner": "Нет подключения к интернету. Вы находитесь в офлайн-режиме."
+  },
+  "errors": {
+    "unexpected": "Произошла непредвиденная ошибка",
+    "description": "Возникла непредвиденная ошибка. Пожалуйста, попробуйте еще раз.",
+    "retry": "Повторить"
+  }
+}
+

@@ -1,7 +1,7 @@
 """Add users, rooms, reviews, collections tables
 
-Revision ID: 0002_add_auth_reviews_rooms_collections
-Revises: 0001_initial_tables
+Revision ID: 0004_auth_reviews_rooms_col
+Revises: 0003_hotel_tonight_fields
 Create Date: 2026-11-04 19:00:00.000000
 
 """
@@ -13,8 +13,8 @@ from sqlalchemy.dialects import postgresql
 from alembic import op
 
 # revision identifiers, used by Alembic.
-revision: str = "0002_add_auth_reviews_rooms_collections"
-down_revision: str | None = "0001_initial_tables"
+revision: str = "0004_auth_reviews_rooms_col"
+down_revision: str | None = "0003_hotel_tonight_fields"
 branch_labels: str | Sequence[str] | None = None
 depends_on: str | Sequence[str] | None = None
 

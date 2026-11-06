@@ -1,0 +1,37 @@
+{
+  "expo": {
+    "name": "StayNow",
+    "slug": "staynow",
+    "version": "3.0.2",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "staynow",
+    "userInterfaceStyle": "dark",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.staynow.app",
+      "config": {
+        "googleMapsApiKey": "AIzaSyDBeSjckG5kn5l2UcQ0h_4UrjjGbp7TrY0"
+      },
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "StayNow tətbiqində yaxınlığınızdakı otelləri və xəritədə məsafəni göstərmək üçün məkan icazəsi lazımdır."
+      }
+    },
+    "android": {
+      "package": "com.staynow.app",
+      "versionCode": 5,
+      "adaptiveIcon": {
+        "backgroundColor": "#806AEC",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundImage": "./assets/images/android-icon-background.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDBeSjckG5kn5l2UcQ0h_4UrjjGbp7TrY0"
+        }
+      }
+    }
+  }
+}
+

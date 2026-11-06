@@ -1,0 +1,5 @@
+store/favoritesStore.ts (Zustand + persist): favoriteIds, toggleFavorite, isFavorite. Bütün ürək düymələri bu store-dan istifadə etsin.
+
+FAVORİTLƏR ekranı: böyük başlıq "Favoritlərim" + sayğac. Otelləri HotelCard ilə (ana səhifə ilə eyni kart) göstər, ürəyi söndürəndə kart layout animasiyası ilə çıxsın. Boşdursa: böyük ürək illustrasiyası (primaryTint dairə içində), "Hələ favorit otel yoxdur", "Bəyəndiyiniz otellərdəki ürəyə basın" və "Otellərə bax" düyməsi.
+
+TARİXÇƏ ekranı (store/historyStore.ts: bookings, addBooking, cancelBooking): başlıq "Rezervasiyalarım". Üstdə segment: "Gələcək", "Keçmiş", "Ləğv edilmiş". Kart (HotelTonight bilet üslubu): solda 88x88 şəkil, ad, tarix aralığı, gecə və qonaq sayı, yekun qiymət, rezervasiya nömrəsi, status badge (Təsdiqlənib - savings tint, Ləğv - boz). Karta basanda rezervasiya detalı (bottom sheet və ya səhifə: bütün məlumat, "Otelə bax", "Rezervasiyanı ləğv et" təsdiq dialoqu ilə, yalnız gələcək və confirmed üçün). Boş vəziyyət üçün ayrıca illustrasiya və mətn.
